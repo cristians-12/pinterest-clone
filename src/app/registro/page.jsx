@@ -1,7 +1,9 @@
-export default function Registro(){
-    return(
-        <>
-            <h1>Soy el registro</h1>
-        </>
+import Formulario from "@/components/Formulario";
+
+export default function Registro() {
+    return (
+        <main className="h-[90vh]">
+            <Formulario />
+        </main>
     )
 }
