@@ -1,17 +1,21 @@
 'use client'
 import { auth } from "@/firebase/config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import userStore from "@/store/userStore";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react"
 
-export default function Formulario() {
+export default function Formulario2() {
 
     const [email, setEmail] = useState(null);
     const [contraseña, setContraseña] = useState(null);
 
-    const registrarUsuario = async () => {
+    const { loginUser, usuario } = userStore()
+
+    const loginUser2 = async () => {
         try {
-            const respuesta = await createUserWithEmailAndPassword(auth, email, contraseña)
+            const respuesta = await signInWithEmailAndPassword(auth, email, contraseña)
             console.log(respuesta)
+            loginUser(respuesta.user)
         } catch (error) {
             console.log(error)
         }
@@ -19,14 +23,16 @@ export default function Formulario() {
 
     const handleClick = (e) => {
         e.preventDefault();
-        registrarUsuario()
+        loginUser2()
     }
 
     return (
         <form className="flex flex-col mx-[30%] gap-10">
+            {/* { usuario ? usuario.email : 'no hay usuario'} */}
+            <h2>Iniciar sesion</h2>
             <input onChange={(e) => setEmail(e.target.value)} className="border border-gray-400 px-3 py-2 rounded-lg" placeholder="Ingresa tu email" type="email" />
             <input onChange={(e) => setContraseña(e.target.value)} className="border border-gray-400 px-3 py-2 rounded-lg" placeholder="Ingresa tu contraseña" type="password" />
-            <button onClick={handleClick} className="bg-red-600 py-2 rounded-2xl font-bold text-white">Registrame</button>
+            <button onClick={handleClick} className="bg-red-600 py-2 rounded-2xl font-bold text-white">Iniciar sesion</button>
         </form>
     )
 }
