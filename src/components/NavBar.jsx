@@ -1,6 +1,7 @@
 'use client'
 import PinterestIcon from "@/assets/PinterestIcon";
 import userStore from "@/store/userStore";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function NavBar() {
@@ -26,7 +27,12 @@ export default function NavBar() {
                 <li>Empresa</li>
                 <li>Blog</li>
                 {usuario ?
-                    (<li>Mi perfil</li>)
+                    (<li className="flex items-center gap-2 border border-gray-400 rounded-lg px-2 py-1">
+                        <div>
+                            <Image className="rounded-full" src={usuario.photoURL} width={20} height={20} alt="profile" />
+                        </div>
+                        Mi perfil
+                    </li>)
                     :
                     (<>
                         <li className="bg-red-600 p-2 rounded-2xl text-white">

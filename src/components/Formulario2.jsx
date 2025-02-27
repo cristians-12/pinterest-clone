@@ -28,6 +28,7 @@ export default function Formulario2() {
         try {
             const response = await signInWithPopup(auth, provider)
             console.log(response)
+            loginUser(response.user)
         } catch (error) {
             console.log(error)
         }
@@ -40,7 +41,7 @@ export default function Formulario2() {
 
     return (
         <form className="flex flex-col mx-[30%] gap-10">
-            <h2>Iniciar sesion</h2>
+            {/* <h2>Iniciar sesion</h2> */}
             <input onChange={(e) => setEmail(e.target.value)} className="border border-gray-400 px-3 py-2 rounded-lg" placeholder="Ingresa tu email" type="email" />
             <input onChange={(e) => setContraseña(e.target.value)} className="border border-gray-400 px-3 py-2 rounded-lg" placeholder="Ingresa tu contraseña" type="password" />
             <button onClick={handleClick} className="bg-red-600 py-2 rounded-2xl font-bold text-white">Iniciar sesion</button>
