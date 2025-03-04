@@ -6,7 +6,8 @@ import Link from "next/link";
 
 export default function NavBar() {
 
-    const { usuario } = userStore()
+    const { usuario } = userStore();
+    console.log(usuario)
 
     return (
         <div className="flex p-5 justify-between z-50 items-center sticky top-0 bg-white font-bold">
@@ -17,9 +18,9 @@ export default function NavBar() {
                     </div>
                 </Link>
 
-                <div>
+                <Link href={'/explore'}>
                     Explorar
-                </div>
+                </Link>
             </div>
 
             <ul className="flex gap-5 items-center">

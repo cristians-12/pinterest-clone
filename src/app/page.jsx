@@ -3,8 +3,7 @@ import Carta from "@/components/Carta";
 export default async function Home() {
 
   const respuesta = await fetch(`https://api.unsplash.com/photos/?client_id=${process.env.ACCESS_KEY}&per_page=500`, { next: { revalidate: 20 } })
-  const datos = await respuesta.json()
-  // console.log(datos)
+  const datos = await respuesta.json();
 
   return (
     <>
