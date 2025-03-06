@@ -29,10 +29,12 @@ export default function NavBar() {
                 <li>Blog</li>
                 {usuario ?
                     (<li className="flex items-center gap-2 border border-gray-400 rounded-lg px-2 py-1">
-                        <div>
-                            <Image className="rounded-full" src={usuario.photoURL} width={20} height={20} alt="profile" />
-                        </div>
-                        Mi perfil
+                        <Link className="flex gap-2 items-center" href={'/perfil'}>
+                            <div>
+                                <Image className="rounded-full" src={usuario.photoURL} width={20} height={20} alt="profile" />
+                            </div>
+                            Mi perfil
+                        </Link>
                     </li>)
                     :
                     (<>

@@ -1,7 +1,9 @@
 'use client'
 import { auth } from "@/firebase/config";
+import useToast from "@/hooks/useToast";
 import userStore from "@/store/userStore";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 
 export default function Formulario2() {
@@ -11,11 +13,16 @@ export default function Formulario2() {
 
     const { loginUser } = userStore()
 
+    const { exito, errorToast } = useToast()
+
+    const router = useRouter()
+
     const loginUser2 = async () => {
         try {
             const respuesta = await signInWithEmailAndPassword(auth, email, contraseña)
             console.log(respuesta)
             loginUser(respuesta.user)
+            exito("Iniciaste sesion exitosamente")
         } catch (error) {
             console.log(error)
         }
@@ -29,6 +36,8 @@ export default function Formulario2() {
             const response = await signInWithPopup(auth, provider)
             console.log(response)
             loginUser(response.user)
+            exito("Iniciaste sesion exitosamente")
+            router.push('/perfil')
         } catch (error) {
             console.log(error)
         }
